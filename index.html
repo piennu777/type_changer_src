@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8" />
+    <title>Type Changer</title>
+    <meta name="keywords" content="PIENNU、ピエンヌ">
+    <meta name="description" content="PIENNUのホームページ。それ以上でもそれ以下でもない。とりあえず遊びにこいよ！">
+    <meta property="og:image" content="https://piennu777.ml/images/icon.png">
+    <meta property="og:image:alt" content="バナー画像">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+    <meta name="keywords" content="PIENNU,物置部屋">
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+    </style>
+</head>
+<body>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <header>
+        <h1 class="headline">
+            <a href="https://piennu777.jp">Type Changer</a>
+        </h1>
+        <ul class="nav-list">
+                    <li class="nav-list-item"><a href="https://diary.piennu777.jp/" class="a-t">日記</a></li>
+                    <li class="nav-list-item"><a href="https://object.piennu777.jp">物置部屋</a></li>
+                    <li class="nav-list-item"><a href="https://zenya.piennu777.jp/" class="menuItem">BOT</a></li>
+                    <li class="nav-list-item"><a href="https://contact.piennu777.jp">お問い合わせ</a></li>
+      </ul>
+    </header>
+
+    <main id="main">
+        <div id="content">
+          <form id="imageForm" enctype="multipart/form-data" method="POST" action="convert.php">
+            
+            <label for="format">変換形式:</label>
+            <select id="format" name="format">
+                <option value="jpg">JPEG</option>
+                <option value="png">PNG</option>
+                <option value="webp">WebP</option>
+            </select>
+
+            <input type="file" name="image" accept="image/*">
+            <label style="font-size: 15px; color: red;">10MBまでアップロード可能</label>
+            <button type="submit">変換してダウンロード</button>
+        </form>
+    
+        <a id="downloadLink" style="display:none" download="converted_image.jpg" href="#">ダウンロード</a>
+        
+      </div>
+      </div>
+                           
+                  <!-- JavaScriptの巣窟 -->
+  <script src="https://kit.fontawesome.com/dd69661a1b.js" crossorigin="anonymous"></script>
+  <script>
+        document.getElementById('myButton').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var formData = new FormData(this);
+            
+            // ファイルを送信
+            fetch('convert.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // ダウンロードリンクを表示
+                var downloadLink = document.getElementById('downloadLink');
+                downloadLink.href = data;
+                downloadLink.style.display = 'block';
+            });
+        });
+</script>
+  <!-- オシマイ☆ -->
+</body>
+</html>
